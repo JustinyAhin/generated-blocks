@@ -32,7 +32,9 @@ import { downloadGeneratedPage, saveAllBlocksToJson } from "./utils.js";
     });
 
     // Save the blocks to a JSON file
-    saveAllBlocksToJson(allBlockTypes);
+    // Comment out because this is not a hard requirement now
+
+    // saveAllBlocksToJson(allBlockTypes);
 
     // Publish the page
     await page.locator('[aria-label="Editor top bar"] >> text=Publish').click();
