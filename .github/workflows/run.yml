@@ -21,3 +21,6 @@ jobs:
 
       - name: Run the script
         run: node ./src/index.js
+        env: |
+          SITE_USERNAME=${{ secrets.SITE_USERNAME }}
+          SITE_PASSWORD=${{ secrets.SITE_PASSWORD }}
