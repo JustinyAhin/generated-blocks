@@ -45,9 +45,6 @@ import { downloadGeneratedPage, saveAllBlocksToJson } from "./utils.js";
     // Get the page URL
     const url = await page.evaluate(() => window.location.href);
 
-    // This is just a test for the GitHub actions
-    console.log(url);
-
     // Download the page
     await downloadGeneratedPage(url);
 

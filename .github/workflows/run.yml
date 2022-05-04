@@ -24,3 +24,18 @@ jobs:
         env:
           SITE_USERNAME: ${{ secrets.SITE_USERNAME }}
           SITE_PASSWORD: ${{ secrets.SITE_PASSWORD }}
+
+      - name: Check the new generated files
+        run: git status
+
+      - name: Stage changed files
+        run: git add .
+
+      - name: Commit changed files
+        run: git commit -m "Commit generated files"
+
+      - name: Fetch from trunk
+        run: git fetch origin trunk
+
+      - name: Push code to trunk
+        run: git push origin HEAD:trunk
