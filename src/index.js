@@ -1,5 +1,5 @@
 import { chromium } from "@playwright/test";
-import { saveAllBlocksToJson } from './utils.js';
+import { downloadGeneratedPage, saveAllBlocksToJson } from './utils.js';
 
 (async () => {
     const browser = await chromium.launch({
@@ -32,19 +32,19 @@ import { saveAllBlocksToJson } from './utils.js';
     // Save the blocks to a JSON file
     saveAllBlocksToJson(allBlockTypes);
 
-    // Save the page
-    await page.evaluate(() => {
-        window.wp.data.dispatch('core/editor').savePost();
-    });
-    await page.waitForSelector('.components-snackbar:has-text("Saved")');
+    // Publish the page
+    await page.locator('[aria-label="Editor top bar"] >> text=Publish').click();
+    await page.locator('[aria-label="Editor publish"] >> text=Publish').first().click();
+    await page.waitForSelector('.components-snackbar:has-text("Published")');
 
-    // Go to the page preview
-    await page.locator('button:has-text("Preview")').click();
-    await Promise.all([
-        page.waitForEvent('popup'),
-        page.locator('text=Preview in new tab').click(),
-        page.waitForLoadState(),
-    ]);
+    // Navigate to the page
+    await page.locator('.post-publish-panel__postpublish-buttons >> text=View Page').click();
+
+    // Get the page URL
+    const url = await page.evaluate(() => window.location.href);
+
+    // Download the page
+    await downloadGeneratedPage(url);
 
     await browser.close();
 })();

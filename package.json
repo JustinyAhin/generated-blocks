@@ -10,5 +10,8 @@
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.21.1"
+  },
+  "dependencies": {
+    "website-scraper": "^5.0.0"
   }
 }
