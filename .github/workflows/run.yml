@@ -31,6 +31,11 @@ jobs:
       - name: Stage changed files
         run: git add .
 
+      - name: Authenticate
+        run: |
+          git config --local user.email "justiny.ahinon@gmail.com"
+          git config --local user.name "JustinyAhin"
+
       - name: Commit changed files
         run: git commit -m "Commit generated files"
 
