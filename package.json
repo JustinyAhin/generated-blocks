@@ -12,6 +12,7 @@
     "@playwright/test": "^1.21.1"
   },
   "dependencies": {
+    "dotenv": "^16.0.0",
     "website-scraper": "^5.0.0"
   }
 }

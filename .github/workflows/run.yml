@@ -2,22 +2,22 @@ name: Run
 
 on:
   push:
-    branches: [ trunk ]
+    branches: [trunk]
 
 jobs:
   run:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-  
-    - name: Setup NodeJS version
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-  
-    - run: npm ci
+      - uses: actions/checkout@v3
 
-    - name: Run the script
-      run: node ./src/index.js
+      - name: Setup NodeJS version
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+
+      - run: npm ci
+      - run: npx playwright install
+
+      - name: Run the script
+        run: node ./src/index.js

@@ -1,5 +1,7 @@
+import { baseUrl, credentials } from "./credentials.js";
+
 import { chromium } from "@playwright/test";
-import { downloadGeneratedPage, saveAllBlocksToJson } from './utils.js';
+import { downloadGeneratedPage, saveAllBlocksToJson } from "./utils.js";
 
 (async () => {
     const browser = await chromium.launch({
@@ -8,13 +10,13 @@ import { downloadGeneratedPage, saveAllBlocksToJson } from './utils.js';
 
     // Login
     const page = await browser.newPage();
-    await page.goto('http://core.local/wp-admin');
-    await page.type('#user_login', 'admin');
-    await page.type('#user_pass', 'password');
+    await page.goto(`${baseUrl}/wp-admin`);
+    await page.type('#user_login', `${credentials.username}`);
+    await page.type('#user_pass', `${credentials.password}`);
     await page.click('#wp-submit');
 
     // Create a new page
-    await page.goto('http://core.local/wp-admin/post-new.php?post_type=page&post_title=Generated+Blocks');
+    await page.goto(`${baseUrl}/wp-admin/post-new.php?post_type=page&post_title=Generated+Blocks`);
 
     // Retrieve all Core blocks and add them to the page
     const allBlockTypes = await page.evaluate(() => {
@@ -42,6 +44,9 @@ import { downloadGeneratedPage, saveAllBlocksToJson } from './utils.js';
 
     // Get the page URL
     const url = await page.evaluate(() => window.location.href);
+
+    // This is just a test for the GitHub actions
+    console.log(url);
 
     // Download the page
     await downloadGeneratedPage(url);
