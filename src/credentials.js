@@ -1,6 +1,6 @@
 import "dotenv/config";
 
-const baseUrl = "https://blocks.trylurking.com";
+const baseUrl = process.env.BASE_URL;
 
 const credentials = {
     'username': process.env.SITE_USERNAME,

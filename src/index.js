@@ -1,7 +1,7 @@
 import { baseUrl, credentials } from "./credentials.js";
 
 import { chromium } from "@playwright/test";
-import { downloadGeneratedPage, saveAllBlocksToJson } from "./utils.js";
+import { downloadGeneratedPage, saveOutputToJson } from "./utils.js";
 
 (async () => {
     const browser = await chromium.launch({
@@ -18,23 +18,32 @@ import { downloadGeneratedPage, saveAllBlocksToJson } from "./utils.js";
     // Create a new page
     await page.goto(`${baseUrl}/wp-admin/post-new.php?post_type=page&post_title=Generated+Blocks`);
 
-    // Retrieve all Core blocks and add them to the page
-    const allBlockTypes = await page.evaluate(() => {
+    // Retrieve all Core blocks
+    const allBlocks = await page.evaluate(() => {
         window.wp.data.dispatch('core/edit-post').toggleFeature('welcomeGuide');
-        const allBlocks = window.wp.blocks.getBlockTypes();
-
-        allBlocks.forEach(block => {
-            const createdBlock = window.wp.blocks.createBlock(block.name);
-            window.wp.data.dispatch('core/block-editor').insertBlock(createdBlock);
-        });
+        let allBlocks = window.wp.blocks.getBlockTypes();
+        allBlocks = allBlocks.filter(block => !block.title.includes("deprecated"));
 
         return allBlocks;
     });
 
-    // Save the blocks to a JSON file
-    // Comment out because this is not a hard requirement now
+    const blocksWithContentAttribute = allBlocks.filter(block => block.attributes.content);
+    await page.evaluate(blocksWithContentAttribute => {
+        blocksWithContentAttribute.forEach(block => {
+            const createBlock = window.wp.blocks.createBlock(block.name, {
+                content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, reiciendis?",
+            });
+            window.wp.data.dispatch('core/block-editor').insertBlock(createBlock);
+        });
+    }, blocksWithContentAttribute);
 
-    // saveAllBlocksToJson(allBlockTypes);
+    const blocksWithoutContentAttribute = allBlocks.filter(block => !block.attributes.content);
+    await page.evaluate(blocksWithoutContentAttribute => {
+        blocksWithoutContentAttribute.forEach(block => {
+            const createBlock = window.wp.blocks.createBlock(block.name);
+            window.wp.data.dispatch('core/block-editor').insertBlock(createBlock);
+        });
+    }, blocksWithoutContentAttribute);
 
     // Publish the page
     await page.locator('[aria-label="Editor top bar"] >> text=Publish').click();
