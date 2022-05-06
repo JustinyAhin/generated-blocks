@@ -1,7 +1,8 @@
-import { baseUrl, credentials } from "./credentials.js";
+import { baseUrl } from "./utils/credentials.js";
 
 import { chromium } from "@playwright/test";
-import { downloadGeneratedPage, saveOutputToJson } from "./utils.js";
+import { downloadGeneratedPage } from "./utils/utils.js";
+import { login, publishPage, retrieveAllBlocks } from "./utils/browser.js";
 
 (async () => {
     const browser = await chromium.launch({
@@ -49,29 +50,3 @@ import { downloadGeneratedPage, saveOutputToJson } from "./utils.js";
 
     await browser.close();
 })();
-
-async function retrieveAllBlocks(page) {
-    return await page.evaluate(() => {
-        window.wp.data.dispatch('core/edit-post').toggleFeature('welcomeGuide');
-        let allBlocks = window.wp.blocks.getBlockTypes();
-        allBlocks = allBlocks.filter(block => !block.title.includes("deprecated"));
-
-        return allBlocks;
-    });
-}
-
-async function publishPage(page) {
-    await page.locator('[aria-label="Editor top bar"] >> text=Publish').click();
-    await page.locator('[aria-label="Editor publish"] >> text=Publish').first().click();
-    await page.waitForSelector('.components-snackbar:has-text("Published")');
-}
-
-async function login(browser) {
-    const page = await browser.newPage();
-    await page.goto(`${baseUrl}/wp-admin`);
-    await page.type('#user_login', `${credentials.username}`);
-    await page.type('#user_pass', `${credentials.password}`);
-    await page.click('#wp-submit');
-    return page;
-}
-
