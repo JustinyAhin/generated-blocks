@@ -6,7 +6,7 @@ import { login, publishPage, retrieveAllBlocks } from "./utils/browser.js";
 
 (async () => {
     const browser = await chromium.launch({
-        headless: false,
+        headless: true,
     });
 
     // Login
