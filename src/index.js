@@ -12,7 +12,7 @@ import { login, publishPage, retrieveAllBlocks } from "./utils/browser.js";
     // Login
     const page = await login(browser);
 
-
+    // Block insertion
     const insertBlock = async (blockRepresentation) => {
         await page.evaluate((_blockRepresentation) => {
             function recursiveCreateBlock({ name, attributes = {}, innerBlocks = [], }) {
@@ -110,7 +110,28 @@ import { login, publishPage, retrieveAllBlocks } from "./utils/browser.js";
     });
 
 
-    await page.waitForTimeout(20000);
+    // Gallery block
+    const galleryImages = [];
+
+    for (let i = 0; i < 10; i++) {
+        const image = {
+            name: "core/image",
+            attributes: {
+                url: `https://picsum.photos/${Math.floor(Math.random() * 1000)}/${Math.floor(Math.random() * 1000)}`,
+                alt: `Random picsum photo ${i}`,
+            }
+        };
+
+        galleryImages.push(image);
+    }
+
+    await insertBlock({
+        name: "core/gallery",
+        innerBlocks: galleryImages,
+    });
+
+
+    // await page.waitForTimeout(20000);
 
     // Publish the page
     await publishPage(page);
