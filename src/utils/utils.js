@@ -1,6 +1,10 @@
 import fs from "fs";
 import scrape from 'website-scraper';
 
+const generateRandomInt = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 const saveOutputToJson = (output) => {
     const date = new Date();
     const fileName = `blocks-${date.getFullYear()}-${date.getMonth()}-${date.getDate()}-${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}.json`;
@@ -21,4 +25,4 @@ const downloadGeneratedPage = async (url) => {
     return await scrape(options);
 }
 
-export { downloadGeneratedPage, saveOutputToJson };
+export { downloadGeneratedPage, generateRandomInt, saveOutputToJson };

@@ -1,7 +1,7 @@
 import { baseUrl } from "./utils/credentials.js";
 
 import { chromium } from "@playwright/test";
-import { downloadGeneratedPage } from "./utils/utils.js";
+import { downloadGeneratedPage, generateRandomInt } from "./utils/utils.js";
 import { login, publishPage, retrieveAllBlocks } from "./utils/browser.js";
 
 (async () => {
@@ -117,7 +117,7 @@ import { login, publishPage, retrieveAllBlocks } from "./utils/browser.js";
         const image = {
             name: "core/image",
             attributes: {
-                url: `https://picsum.photos/${Math.floor(Math.random() * 1000)}/${Math.floor(Math.random() * 1000)}`,
+                url: `https://picsum.photos/${generateRandomInt(1200, 1600)}/${generateRandomInt(450, 600)}`,
                 alt: `Random picsum photo ${i}`,
             }
         };
@@ -190,8 +190,31 @@ import { login, publishPage, retrieveAllBlocks } from "./utils/browser.js";
         }
     });
 
+    // Social links block
+    const socialLinks = [
+        {
+            name: "core/social-link",
+            attributes: {
+                url: "https://www.facebook.com/",
+                service: "facebook",
+            }
+        },
+        {
+            name: "core/social-link",
+            attributes: {
+                url: "https://www.twitter.com/",
+                service: "twitter",
+            }
+        }
+    ]
+
+    await insertBlock({
+        name: "core/social-links",
+        innerBlocks: socialLinks,
+    })
+
     // Other widgets blocks
-    const otherWidgetBlocks = blocksByCategory.widgets.filter((blockName) => !["core/html", "core/rss"].includes(blockName));
+    const otherWidgetBlocks = blocksByCategory.widgets.filter((blockName) => !["core/html", "core/rss", "core/social-links"].includes(blockName));
 
     widgetBlocks.forEach(async (blockName) => {
         await insertBlock({
