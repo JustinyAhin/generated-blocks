@@ -130,6 +130,77 @@ import { login, publishPage, retrieveAllBlocks } from "./utils/browser.js";
         innerBlocks: galleryImages,
     });
 
+    // Audio block
+    const audioUrl = "https://blocks.trylurking.com/wp-content/uploads/2022/05/SoundHelix-Song-4.mp3";
+
+    await insertBlock({
+        name: "core/audio",
+        attributes: {
+            src: audioUrl,
+        }
+    });
+
+    // Video block
+    const videoUrl = "https://blocks.trylurking.com/wp-content/uploads/2022/05/plated-dish.mp4";
+
+    await insertBlock({
+        name: "core/video",
+        attributes: {
+            src: videoUrl,
+        }
+    });
+
+    // File block
+    const fileUrl = "https://blocks.trylurking.com/wp-content/uploads/2022/05/hello-world.pdf";
+
+    await insertBlock({
+        name: "core/file",
+        attributes: {
+            fileName: "A book about WordPress - Part 1",
+            href: fileUrl,
+        }
+    });
+
+    // Media and text block
+    // await insertBlock({
+    //     name: "core/media-text",
+    //     attributes: {
+    //         mediaUrl: imageData.url,
+    //         mediaAlt: imageData.alt,
+    //     }
+    // });
+
+    // HTML block
+    const htmlContent = `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, reiciendis?</p>`;
+
+    await insertBlock({
+        name: "core/html",
+        attributes: {
+            content: htmlContent,
+        }
+    });
+
+    // RSS block
+    const feedURL = "https://wordpress.org/news/feed/";
+
+    await insertBlock({
+        name: "core/rss",
+        attributes: {
+            feedURL,
+        }
+    });
+
+    // Other widgets blocks
+    const otherWidgetBlocks = blocksByCategory.widgets.filter((blockName) => !["core/html", "core/rss"].includes(blockName));
+
+    widgetBlocks.forEach(async (blockName) => {
+        await insertBlock({
+            name: blockName,
+        });
+    });
+
+
+
     // Publish the page
     await publishPage(page);
 
