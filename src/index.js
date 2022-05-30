@@ -130,9 +130,6 @@ import { login, publishPage, retrieveAllBlocks } from "./utils/browser.js";
         innerBlocks: galleryImages,
     });
 
-
-    // await page.waitForTimeout(20000);
-
     // Publish the page
     await publishPage(page);
 
