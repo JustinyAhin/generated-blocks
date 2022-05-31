@@ -288,6 +288,14 @@ import { login, publishPage, retrieveAllBlocks } from "./utils/browser.js";
         }
     });
 
+    // Theme blocks
+    const themeBlocks = blocksByCategory.theme;
+
+    themeBlocks.forEach(async (blockName) => {
+        await insertBlock({
+            name: blockName,
+        });
+    });
 
     // Publish the page
     await publishPage(page);
