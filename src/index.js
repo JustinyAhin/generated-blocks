@@ -206,7 +206,7 @@ import { login, publishPage, retrieveAllBlocks } from "./utils/browser.js";
                 service: "twitter",
             }
         }
-    ]
+    ];
 
     await insertBlock({
         name: "core/social-links",
@@ -216,12 +216,66 @@ import { login, publishPage, retrieveAllBlocks } from "./utils/browser.js";
     // Other widgets blocks
     const otherWidgetBlocks = blocksByCategory.widgets.filter((blockName) => !["core/html", "core/rss", "core/social-links"].includes(blockName));
 
-    widgetBlocks.forEach(async (blockName) => {
+    otherWidgetBlocks.forEach(async (blockName) => {
         await insertBlock({
             name: blockName,
         });
     });
 
+    // Buttons
+    const innerButtons = [
+        {
+            name: "core/button",
+            attributes: {
+                text: "First button",
+                url: "https://example.com",
+            },
+        },
+        {
+            name: "core/button",
+            attributes: {
+                text: "WordPress",
+                url: "https://wordpress.org",
+            },
+        },
+        {
+            name: "core/button",
+            attributes: {
+                text: "Accessibility",
+                url: "https://a11yproject.com",
+            },
+        }
+    ];
+
+    await insertBlock({
+        name: "core/buttons",
+        innerBlocks: innerButtons,
+    });
+
+    // Columns
+
+    // Group
+    await insertBlock({
+        name: "core/group",
+        innerBlocks: [
+            {
+                name: "core/paragraph",
+                attributes: {
+                    content: "This is a paragraph",
+                },
+            },
+            innerButtons,
+        ],
+    });
+
+    // Other design blocks
+    const otherDesignBlocks = ["core/more", "core/nextpage", "core/separator", "core/spacer"];
+
+    otherDesignBlocks.forEach(async (blockName) => {
+        await insertBlock({
+            name: blockName,
+        });
+    });
 
 
     // Publish the page
