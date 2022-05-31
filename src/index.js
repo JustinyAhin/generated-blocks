@@ -297,6 +297,15 @@ import { login, publishPage, retrieveAllBlocks } from "./utils/browser.js";
         });
     });
 
+    // Reusable block
+    const reusableBlocks = blocksByCategory.reusable;
+
+    reusableBlocks.forEach(async (blockName) => {
+        await insertBlock({
+            name: blockName,
+        });
+    });
+
     // Publish the page
     await publishPage(page);
 
