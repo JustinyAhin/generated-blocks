@@ -264,7 +264,6 @@ import { login, publishPage, retrieveAllBlocks } from "./utils/browser.js";
                     content: "This is a paragraph",
                 },
             },
-            innerButtons,
         ],
     });
 
