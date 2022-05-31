@@ -1,6 +1,9 @@
 name: Generate Core blocks
 
 on:
+  push:
+      paths:
+        - .github/workflows/run.yml
   schedule:
     - cron: '0 0 */4 * *'  # At 12:00 AM, every 4 days
 
