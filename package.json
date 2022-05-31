@@ -1,17 +1,19 @@
 {
   "name": "generated-blocks",
   "version": "0.0.0",
-  "description": "",
+  "description": "Generate a version of all blocks registered by WordPress Core",
   "main": "index.js",
   "type": "module",
   "scripts": {},
-  "keywords": [],
+  "keywords": [
+    "wordpress",
+    "gutenberg",
+    "blocks"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.21.1"
-  },
-  "dependencies": {
+    "@playwright/test": "^1.21.1",
     "dotenv": "^16.0.0",
     "website-scraper": "^5.0.0"
   }
