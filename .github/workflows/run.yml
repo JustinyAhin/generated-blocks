@@ -1,8 +1,8 @@
-name: Run
+name: Generate Core blocks
 
 on:
   schedule:
-    - cron: '0 0 */4 * *'
+    - cron: '0 0 */4 * *'  # At 12:00 AM, every 4 days
 
 jobs:
   run:
