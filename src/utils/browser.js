@@ -3,6 +3,10 @@ import { baseUrl, credentials } from "./credentials.js";
 const login = async (browser) => {
     const page = await browser.newPage();
     await page.goto(`${baseUrl}/wp-admin`);
+
+    // Wait for the login form to be visible
+    await page.waitForSelector('#loginform');
+
     await page.type('#user_login', `${credentials.username}`);
     await page.type('#user_pass', `${credentials.password}`);
     await page.click('#wp-submit');
