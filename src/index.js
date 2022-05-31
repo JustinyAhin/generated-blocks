@@ -277,6 +277,17 @@ import { login, publishPage, retrieveAllBlocks } from "./utils/browser.js";
         });
     });
 
+    // Embed
+    const embedUrl = "https://twitter.com/WordPress/status/1531319545603973123";
+
+    await insertBlock({
+        name: "core/embed",
+        attributes: {
+            url: embedUrl,
+            caption: "Twitter embed",
+        }
+    });
+
 
     // Publish the page
     await publishPage(page);
