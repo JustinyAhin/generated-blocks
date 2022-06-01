@@ -1,5 +1,11 @@
 import fs from "fs";
 import scrape from 'website-scraper';
+import { DateTime } from "luxon";
+
+const getCurrentDateTime = () => {
+    let currentDateTime = DateTime.utc().toLocaleString(DateTime.DATETIME_FULL).toLocaleLowerCase();
+    return currentDateTime.replace(/\s/g, "-").replace(/,/g, "");
+}
 
 const generateRandomInt = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -7,15 +13,14 @@ const generateRandomInt = (min, max) => {
 
 const saveOutputToJson = (output) => {
     const date = new Date();
-    const fileName = `blocks-${date.getFullYear()}-${date.getMonth()}-${date.getDate()}-${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}.json`;
+    const fileName = `blocks-${getCurrentDateTime()}.json`;
     const filePath = `./.artifacts/blocks/${fileName}`;
 
     fs.writeFileSync(filePath, JSON.stringify(output, null, 2));
 }
 
 const downloadGeneratedPage = async (url) => {
-    const date = new Date();
-    const path = `./.artifacts/generated-pages/${date.getFullYear()}-${date.getMonth()}-${date.getDate()}-${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;
+    const path = `./.artifacts/generated-pages/${getCurrentDateTime()}`;
 
     const options = {
         urls: [url],
@@ -25,4 +30,4 @@ const downloadGeneratedPage = async (url) => {
     return await scrape(options);
 }
 
-export { downloadGeneratedPage, generateRandomInt, saveOutputToJson };
+export { downloadGeneratedPage, generateRandomInt, getCurrentDateTime, saveOutputToJson };

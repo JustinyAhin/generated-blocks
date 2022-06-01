@@ -1,7 +1,7 @@
 import { baseUrl } from "./utils/credentials.js";
 
 import { chromium } from "@playwright/test";
-import { downloadGeneratedPage, generateRandomInt } from "./utils/utils.js";
+import { downloadGeneratedPage, generateRandomInt, getCurrentDateTime } from "./utils/utils.js";
 import { login, publishPage, retrieveAllBlocks } from "./utils/browser.js";
 
 (async () => {
@@ -24,7 +24,8 @@ import { login, publishPage, retrieveAllBlocks } from "./utils/browser.js";
     }
 
     // Create a new page
-    await page.goto(`${baseUrl}/wp-admin/post-new.php?post_type=page&post_title=Generated+Blocks`);
+    const pageTitle = `Generated+Blocks+on+${getCurrentDateTime()}`;
+    await page.goto(`${baseUrl}/wp-admin/post-new.php?post_type=page&post_title=${pageTitle}`);
 
     // Retrieve all Core blocks
     const allBlocks = await retrieveAllBlocks(page);
