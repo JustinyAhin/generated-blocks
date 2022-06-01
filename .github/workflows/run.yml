@@ -48,4 +48,3 @@ jobs:
 
       - name: Push code to trunk
         run: git push origin HEAD:trunk
-
