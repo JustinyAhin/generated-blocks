@@ -1,10 +1,10 @@
 import { test } from "@playwright/test";
 
-import { downloadGeneratedPage, getCurrentDateTime } from "../src/misc";
-import { site } from "../src/site";
-import { insertBlock, login, publishPage } from "../src/tests-utils";
+import { downloadGeneratedPage, getCurrentDateTime } from "../../src/misc";
+import { site } from "../../src/site";
+import { insertBlock, login, publishPage } from "../../src/tests-utils";
 
-const textBlocks = [
+const TEXTBLOCKS = [
   "core/paragraph",
   "core/heading",
   "core/list",
@@ -18,11 +18,11 @@ const textBlocks = [
   "core/table",
   "core/verse",
 ];
-const content =
+const CONTENT =
   "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, reiciendis?";
 
 test.describe("Blocks", () => {
-  test("Add blocks to page", async ({ page }) => {
+  test("Text blocks", async ({ page }) => {
     await login(site.url, page);
     await page.goto(`${site.url}/wp-admin`);
 
@@ -31,11 +31,11 @@ test.describe("Blocks", () => {
       `${site.url}/wp-admin/post-new.php?post_type=page&post_title=${pageTitle}`
     );
 
-    textBlocks.forEach(async (blockName) => {
+    TEXTBLOCKS.forEach(async (blockName) => {
       await insertBlock(page, {
         name: blockName,
         attributes: {
-          content,
+          CONTENT,
         },
       });
     });
@@ -52,6 +52,6 @@ test.describe("Blocks", () => {
     const url = await page.evaluate(() => window.location.href);
 
     // Download the page
-    await downloadGeneratedPage(url, getCurrentDateTime());
+    await downloadGeneratedPage(url, getCurrentDateTime(), "text");
   });
 });
