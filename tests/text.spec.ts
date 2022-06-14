@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 
-import { getCurrentDateTime } from "../src/misc";
+import { downloadGeneratedPage, getCurrentDateTime } from "../src/misc";
 import { site } from "../src/site";
 import { insertBlock, login, publishPage } from "../src/tests-utils";
 
@@ -48,10 +48,10 @@ test.describe("Blocks", () => {
       .locator(".post-publish-panel__postpublish-buttons >> text=View Page")
       .click();
 
-    // // Get the page URL
-    // const url = await page.evaluate(() => window.location.href);
+    // Get the page URL
+    const url = await page.evaluate(() => window.location.href);
 
     // Download the page
-    // await downloadGeneratedPage(url, getCurrentDateTime());
+    await downloadGeneratedPage(url, getCurrentDateTime());
   });
 });
