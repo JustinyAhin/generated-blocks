@@ -1,4 +1,16 @@
 import { Page } from "@playwright/test";
+import { getCurrentDateTime } from "./misc";
+import { site } from "./site";
+
+async function createPage(page: Page, blockType: string) {
+  await login(site.url, page);
+  await page.goto(`${site.url}/wp-admin`);
+
+  const pageTitle = `${blockType}+blocks+on+${getCurrentDateTime()}`;
+  await page.goto(
+    `${site.url}/wp-admin/post-new.php?post_type=page&post_title=${pageTitle}`
+  );
+}
 
 async function login(url: String, page: Page) {
   await page.goto(`${url}/wp-login.php`);
@@ -33,4 +45,4 @@ async function publishPage(page: Page) {
   await page.waitForSelector('.components-snackbar:has-text("Published")');
 }
 
-export { insertBlock, login, publishPage };
+export { createPage, insertBlock, login, publishPage };

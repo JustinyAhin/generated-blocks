@@ -1,8 +1,11 @@
 import { test } from "@playwright/test";
 
 import { downloadGeneratedPage, getCurrentDateTime } from "../../src/misc";
-import { site } from "../../src/site";
-import { insertBlock, login, publishPage } from "../../src/tests-utils";
+import {
+  createPage,
+  insertBlock,
+  publishPage,
+} from "../../src/tests-utils";
 
 const VALUES = `<li>First list item</li>
  <li>Second list item</li>
@@ -12,13 +15,7 @@ const VALUES = `<li>First list item</li>
 
 test.describe("Blocks", () => {
   test("List blocks", async ({ page }) => {
-    await login(site.url, page);
-    await page.goto(`${site.url}/wp-admin`);
-
-    const pageTitle = `Text+blocks+on+${getCurrentDateTime()}`;
-    await page.goto(
-      `${site.url}/wp-admin/post-new.php?post_type=page&post_title=${pageTitle}`
-    );
+    await createPage(page, "list");
 
     await insertBlock(page, {
       name: "core/list",
