@@ -41,7 +41,7 @@ import { login, publishPage, retrieveAllBlocks } from "./utils/browser.js";
     }, {});
 
     // Text blocks
-    const textBlocks = ["core/paragraph", "core/heading", "core/freeform", "core/code", "core/missing", "core/preformatted", "core/verse"]
+    const textBlocks = ["core/paragraph", "core/heading", "core/freeform", "core/code", "core/missing", "core/preformatted", "core/verse"];
 
     const content = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, reiciendis?";
 
