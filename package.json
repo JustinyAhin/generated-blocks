@@ -2,8 +2,6 @@
   "name": "generated-blocks",
   "version": "0.0.0",
   "description": "Generate a version of all blocks registered by WordPress Core",
-  "main": "index.js",
-  "type": "module",
   "scripts": {},
   "keywords": [
     "wordpress",
@@ -14,6 +12,9 @@
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.21.1",
+    "@types/luxon": "^2.3.2",
+    "@types/node": "^17.0.42",
+    "@types/website-scraper": "^1.2.6",
     "dotenv": "^16.0.0",
     "luxon": "^2.4.0",
     "website-scraper": "^5.0.0"
