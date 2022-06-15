@@ -32,6 +32,9 @@ test.describe("Blocks", () => {
       innerBlocks: SOCIALLINKS,
     });
 
+    // Wait for the social links to be visible
+    await page.waitForSelector("ul.wp-block-social-links");
+
     await postPublishActions(page, "social");
   });
 });
