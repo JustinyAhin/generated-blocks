@@ -20,6 +20,9 @@ test.describe("Blocks", () => {
       },
     });
 
+    // Wait for the image to be properly displayed
+    await page.waitForSelector(`img[alt="${IMAGEDATA.alt}"]`);
+
     // Publish the page
     await publishPage(page);
 
