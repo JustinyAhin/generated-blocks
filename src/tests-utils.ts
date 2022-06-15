@@ -17,7 +17,11 @@ async function login(page: Page) {
 
   await page.locator("#user_login").type(`${process.env.SITE_USERNAME}`);
   await page.locator("#user_pass").type(`${process.env.SITE_PASSWORD}`);
-  await page.click("#wp-submit");
+
+  await Promise.all([
+    page.waitForNavigation(),
+    page.locator('text=Log In').click()
+  ]);
 }
 
 async function insertBlock(page: Page, blockRepresentation): Promise<void> {
