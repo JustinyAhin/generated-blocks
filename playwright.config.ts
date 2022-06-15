@@ -29,7 +29,7 @@ const config: PlaywrightTestConfig = {
     },
   ],
 
-  outputDir: ".artifacts/",
+  outputDir: "./artifacts/trace/",
 };
 
 export default config;

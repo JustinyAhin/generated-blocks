@@ -3,6 +3,7 @@
 
 node_modules/
 /artifacts/storage/
+/artifacts/trace/
 /test-results/
 /playwright-report/
 /playwright/.cache/
