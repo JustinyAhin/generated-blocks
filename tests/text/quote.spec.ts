@@ -5,11 +5,10 @@ import {
   insertBlock,
   postPublishActions,
 } from "../../src/tests-utils";
+import { HTMLCONTENT } from "../../src/site";
 
 const QUOTEBLOCKS = ["core/quote", "core/pullquote"];
 const CITATION = "Jane Doe";
-const VALUE =
-  "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, reiciendis?</p>";
 
 test.describe("Blocks", () => {
   test("Quote blocks", async ({ page }) => {
@@ -19,7 +18,7 @@ test.describe("Blocks", () => {
       await insertBlock(page, {
         name: blockName,
         attributes: {
-          value: VALUE,
+          value: HTMLCONTENT,
           citation: CITATION,
         },
       });
