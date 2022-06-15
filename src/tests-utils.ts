@@ -13,6 +13,7 @@ async function createPage(page: Page, blockType: string) {
 
 async function login(page: Page) {
   await page.goto("/wp-login.php");
+  await page.waitForTimeout(500);
 
   await page.locator("#user_login").type(`${process.env.SITE_USERNAME}`);
   await page.locator("#user_pass").type(`${process.env.SITE_PASSWORD}`);

@@ -22,4 +22,6 @@ const IMAGEDATA: ImageDataInterface = {
   alt: "Picsum image 1200x450",
 };
 
-export { SITE, IMAGEDATA };
+const HTMLCONTENT = `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, reiciendis?</p>`;
+
+export { SITE, IMAGEDATA, HTMLCONTENT };
