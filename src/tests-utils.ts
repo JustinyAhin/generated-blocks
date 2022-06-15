@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import { getCurrentDateTime } from "./misc";
+import { downloadGeneratedPage, getCurrentDateTime } from "./misc";
 
 async function createPage(page: Page, blockType: string) {
   await login(page);
@@ -45,4 +45,23 @@ async function publishPage(page: Page) {
   await page.waitForSelector('.components-snackbar:has-text("Published")');
 }
 
-export { createPage, insertBlock, login, publishPage };
+async function postPublishActions(
+  page: Page,
+  blockType: string
+): Promise<void> {
+  // Publish the page
+  await publishPage(page);
+
+  // Navigate to the page
+  await page
+    .locator(".post-publish-panel__postpublish-buttons >> text=View Page")
+    .click();
+
+  // Get the page URL
+  const url = await page.evaluate(() => window.location.href);
+
+  // Download the page
+  downloadGeneratedPage(url, getCurrentDateTime(), blockType);
+}
+
+export { createPage, insertBlock, login, publishPage, postPublishActions };

@@ -9,7 +9,7 @@ function downloadGeneratedPage(
   blockType: string
 ): void {
   execSync(
-    `node-site-downloader download -d ${SITE.url} -s ${SITE.url} -o ./artifacts/${dateString}/${blockType} --outputFolderSuffix blocks --include-images`
+    `node-site-downloader download -d ${url} -s ${url} -o ./artifacts/${dateString}/${blockType} --outputFolderSuffix blocks --include-images`
   );
 }
 
