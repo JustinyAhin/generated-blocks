@@ -20,10 +20,10 @@ jobs:
           node-version: "14"
 
       - run: npm ci
-      - run: npx playwright install chromium
+      - run: npx playwright install
 
       - name: Run the script
-        run: node ./src/index.js
+        run: npx playwright test
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
           SITE_USERNAME: ${{ secrets.SITE_USERNAME }}
@@ -48,4 +48,3 @@ jobs:
 
       - name: Push code to trunk
         run: git push origin HEAD:trunk
-
