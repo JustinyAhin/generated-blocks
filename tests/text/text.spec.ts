@@ -9,19 +9,13 @@ import {
 const TEXTBLOCKS = [
   "core/paragraph",
   "core/heading",
-  "core/list",
-  "core/quote",
   "core/freeform",
   "core/code",
-  "core/column",
   "core/missing",
   "core/preformatted",
-  "core/pullquote",
-  "core/table",
   "core/verse",
 ];
-const CONTENT =
-  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, reiciendis?";
+const CONTENT = "Lorem ipsum dolor sit amet consectetur adipisicing elit.";
 
 test.describe("Blocks", () => {
   test("Text blocks", async ({ page }) => {
@@ -31,7 +25,7 @@ test.describe("Blocks", () => {
       await insertBlock(page, {
         name: blockName,
         attributes: {
-          CONTENT,
+          content: CONTENT,
         },
       });
     });

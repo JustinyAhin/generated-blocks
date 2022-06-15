@@ -19,7 +19,7 @@ test.describe("Blocks", () => {
     await insertBlock(page, {
       name: "core/list",
       attributes: {
-        VALUES,
+        values: VALUES,
       },
     });
 
