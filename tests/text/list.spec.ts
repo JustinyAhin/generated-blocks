@@ -36,6 +36,6 @@ test.describe("Blocks", () => {
     const url = await page.evaluate(() => window.location.href);
 
     // Download the page
-    await downloadGeneratedPage(url, getCurrentDateTime(), "list");
+    downloadGeneratedPage(url, getCurrentDateTime(), "list");
   });
 });

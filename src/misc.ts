@@ -1,7 +1,7 @@
 import { execSync } from "child_process";
 import { DateTime } from "luxon";
 
-import { site } from "./site";
+import { SITE } from "./site";
 
 function downloadGeneratedPage(
   url: string,
@@ -9,7 +9,7 @@ function downloadGeneratedPage(
   blockType: string
 ): void {
   execSync(
-    `node-site-downloader download -d ${site.url} -s ${site.url} -o ./artifacts/${dateString}/${blockType} --outputFolderSuffix blocks --include-images`
+    `node-site-downloader download -d ${SITE.url} -s ${SITE.url} -o ./artifacts/${dateString}/${blockType} --outputFolderSuffix blocks --include-images`
   );
 }
 

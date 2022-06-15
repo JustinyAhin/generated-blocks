@@ -1,12 +1,9 @@
 import { test } from "@playwright/test";
 
 import { downloadGeneratedPage, getCurrentDateTime } from "../../src/misc";
+import { IMAGEDATA } from "../../src/site";
 import { createPage, insertBlock, publishPage } from "../../src/tests-utils";
 
-const IMAGEDATA = {
-  url: "https://picsum.photos/1200/450",
-  alt: "Picsum image 1200x450",
-};
 
 test.describe("Blocks", () => {
   test("Image blocks", async ({ page }) => {
@@ -35,6 +32,6 @@ test.describe("Blocks", () => {
     const url = await page.evaluate(() => window.location.href);
 
     // Download the page
-    await downloadGeneratedPage(url, getCurrentDateTime(), "image");
+    downloadGeneratedPage(url, getCurrentDateTime(), "image");
   });
 });

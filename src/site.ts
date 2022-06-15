@@ -6,10 +6,20 @@ interface SiteInterface {
   password: string;
 }
 
-const site: SiteInterface = {
+interface ImageDataInterface {
+  url: string;
+  alt: string;
+}
+
+const SITE: SiteInterface = {
   url: process.env.BASE_URL,
   username: process.env.SITE_USERNAME,
   password: process.env.SITE_PASSWORD,
 };
 
-export { site };
+const IMAGEDATA: ImageDataInterface = {
+  url: "https://picsum.photos/1200/450",
+  alt: "Picsum image 1200x450",
+};
+
+export { SITE, IMAGEDATA };
