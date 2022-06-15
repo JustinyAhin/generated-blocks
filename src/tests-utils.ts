@@ -14,7 +14,6 @@ async function createPage(page: Page, blockType: string) {
 
 async function login(url: String, page: Page) {
   await page.goto(`${url}/wp-login.php`);
-  await page.waitForSelector("#loginform");
 
   await page.locator("#user_login").type(`${process.env.SITE_USERNAME}`);
   await page.locator("#user_pass").type(`${process.env.SITE_PASSWORD}`);
