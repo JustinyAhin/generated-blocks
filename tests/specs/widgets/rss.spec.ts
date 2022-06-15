@@ -4,7 +4,7 @@ import {
   createPage,
   insertBlock,
   postPublishActions,
-} from "../../src/tests-utils";
+} from "../../../src/tests-utils";
 
 const FEEDURL = "https://wordpress.org/news/feed/";
 

@@ -4,7 +4,7 @@ import {
   createPage,
   insertBlock,
   postPublishActions,
-} from "../../src/tests-utils";
+} from "../../../src/tests-utils";
 
 const EMBEDURL = "https://twitter.com/WordPress/status/1531319545603973123";
 

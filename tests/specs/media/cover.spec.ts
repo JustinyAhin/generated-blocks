@@ -1,11 +1,11 @@
 import { test } from "@playwright/test";
 
-import { IMAGEDATA } from "../../src/site";
+import { IMAGEDATA } from "../../../src/site";
 import {
   createPage,
   insertBlock,
   postPublishActions,
-} from "../../src/tests-utils";
+} from "../../../src/tests-utils";
 
 test.describe("Blocks", () => {
   test("Cover blocks", async ({ page }) => {

@@ -4,8 +4,8 @@ import {
   createPage,
   insertBlock,
   postPublishActions,
-} from "../../src/tests-utils";
-import { HTMLCONTENT } from "../../src/site";
+} from "../../../src/tests-utils";
+import { HTMLCONTENT } from "../../../src/site";
 
 test.describe("Blocks", () => {
   test("Html blocks", async ({ page }) => {

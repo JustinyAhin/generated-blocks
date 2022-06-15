@@ -4,7 +4,7 @@ import {
   createPage,
   insertBlock,
   postPublishActions,
-} from "../../src/tests-utils";
+} from "../../../src/tests-utils";
 
 const VIDEOURL =
   "https://blocks.trylurking.com/wp-content/uploads/2022/05/plated-dish.mp4";

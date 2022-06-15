@@ -4,7 +4,7 @@ import {
   createPage,
   insertBlock,
   postPublishActions,
-} from "../../src/tests-utils";
+} from "../../../src/tests-utils";
 
 const FILEURL =
   "https://blocks.trylurking.com/wp-content/uploads/2022/05/hello-world.pdf";
