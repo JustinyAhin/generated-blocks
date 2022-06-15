@@ -1,9 +1,8 @@
 import { Page } from "@playwright/test";
 import { downloadGeneratedPage, getCurrentDateTime } from "./misc";
+import { SITE } from "./site";
 
 async function createPage(page: Page, blockType: string) {
-  await page.goto(`/wp-admin`);
-
   const pageTitle = `${blockType}+blocks+on+${getCurrentDateTime()}`;
   await page.goto(
     `/wp-admin/post-new.php?post_type=page&post_title=${pageTitle}`
@@ -11,7 +10,7 @@ async function createPage(page: Page, blockType: string) {
 }
 
 async function login(page: Page) {
-  await page.goto("/wp-login.php");
+  await page.goto(`${SITE.url}/wp-login.php`);
   await page.waitForTimeout(500);
 
   await page.locator("#user_login").type(`${process.env.SITE_USERNAME}`);

@@ -2,6 +2,7 @@ import type { PlaywrightTestConfig } from "@playwright/test";
 import { devices } from "@playwright/test";
 
 const config: PlaywrightTestConfig = {
+  globalSetup: "./tests/config/global-setup",
   testDir: "./tests",
   timeout: 30 * 1000,
   expect: {
@@ -16,6 +17,7 @@ const config: PlaywrightTestConfig = {
     actionTimeout: 0,
     baseURL: process.env.BASE_URL,
     trace: "on-first-retry",
+    storageState: "./artifacts/storage/storage.json",
   },
 
   projects: [
