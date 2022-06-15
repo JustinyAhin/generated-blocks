@@ -2,7 +2,6 @@ import { Page } from "@playwright/test";
 import { downloadGeneratedPage, getCurrentDateTime } from "./misc";
 
 async function createPage(page: Page, blockType: string) {
-  await login(page);
   await page.goto(`/wp-admin`);
 
   const pageTitle = `${blockType}+blocks+on+${getCurrentDateTime()}`;
