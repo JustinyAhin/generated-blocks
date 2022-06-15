@@ -4,8 +4,8 @@ import {
   createPage,
   insertBlock,
   postPublishActions,
-} from "../../src/tests-utils";
-import { HTMLCONTENT } from "../../src/site";
+} from "../../../src/tests-utils";
+import { HTMLCONTENT } from "../../../src/site";
 
 const QUOTEBLOCKS = ["core/quote", "core/pullquote"];
 const CITATION = "Jane Doe";
