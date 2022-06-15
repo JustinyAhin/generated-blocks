@@ -20,6 +20,8 @@ test.describe("Blocks", () => {
       },
     });
 
+    await page.waitForSelector("iframe[title='Embedded content from twitter']");
+
     await postPublishActions(page, "embed");
   });
 });
