@@ -1,19 +1,18 @@
 import { Page } from "@playwright/test";
 import { getCurrentDateTime } from "./misc";
-import { site } from "./site";
 
 async function createPage(page: Page, blockType: string) {
-  await login(site.url, page);
-  await page.goto(`${site.url}/wp-admin`);
+  await login(page);
+  await page.goto(`/wp-admin`);
 
   const pageTitle = `${blockType}+blocks+on+${getCurrentDateTime()}`;
   await page.goto(
-    `${site.url}/wp-admin/post-new.php?post_type=page&post_title=${pageTitle}`
+    `/wp-admin/post-new.php?post_type=page&post_title=${pageTitle}`
   );
 }
 
-async function login(url: String, page: Page) {
-  await page.goto(`${url}/wp-login.php`);
+async function login(page: Page) {
+  await page.goto("/wp-login.php");
 
   await page.locator("#user_login").type(`${process.env.SITE_USERNAME}`);
   await page.locator("#user_pass").type(`${process.env.SITE_PASSWORD}`);
