@@ -20,7 +20,7 @@ jobs:
           node-version: "14"
 
       - run: npm ci
-      - run: npx playwright install
+      - run: npx playwright install chromium
 
       - name: Run the script
         run: npx playwright test
