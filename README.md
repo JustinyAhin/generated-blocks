@@ -1,6 +1,6 @@
 # Generated Blocks
 
-This is a small script to generate pages for WordPress Core blocks. The pages are published on [this site](https://blocks.trylurking.com), example : [locks.trylurking.com/other-widget-blocks-blocks-on-jun-15-2022](https://blocks.trylurking.com/other-widget-blocks-blocks-on-jun-15-2022/).
+This is a small script to generate pages for WordPress Core blocks. The pages are published on [this site](https://blocks.trylurking.com), [example for the cover block](https://blocks.trylurking.com/cover-blocks-on-jun-15-2022/).
 
 The script also saves the generated page with all its assets and media to [folders on the repo](./artifacts). The folders are named with the current date for easy identification, and the blocks page are grouped by date.
 
